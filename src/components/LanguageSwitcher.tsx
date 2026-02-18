@@ -31,6 +31,7 @@ export default function LanguageSwitcher() {
           size="icon"
           onClick={() => handleLanguageChange(code)}
           disabled={isPending}
+          className='cursor-pointer'
         >
           {label}
         </Button>

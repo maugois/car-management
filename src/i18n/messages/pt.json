@@ -18,5 +18,17 @@
     "loginButton": "Entrar",
     "noAccount": "Não tem uma conta?",
     "registerLink": "Registre-se aqui"
+  },
+
+  "register": {
+    "title": "Criar Conta",
+    "description": "Crie sua conta para começar.",
+    "email": "E-mail",
+    "name": "Nome Completo",
+    "password": "Senha",
+    "loginButton": "Registrar",
+    "noAccount": "Já tem uma conta?",
+    "registerLink": "Acesse aqui",
+    "confirmPassword": "Confirmar Senha"
   }
 }

@@ -17,6 +17,7 @@ export default function ThemeSwitcher() {
       size="icon" 
       onClick={toggleTheme} 
       suppressHydrationWarning
+      className='cursor-pointer'
     >
       {theme === 'light' ? (
         <MdOutlineNightlight className="size-5" />

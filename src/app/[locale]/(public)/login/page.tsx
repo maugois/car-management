@@ -29,13 +29,13 @@ export default async function LoginPage() {
 
                         <FieldGroup>
                             <Field>
-                                <FieldLabel>{t('email')}</FieldLabel>
-                                <Input type="text" placeholder={t('email')} className="w-full mb-4" />
+                                <FieldLabel htmlFor="email">{t('email')}</FieldLabel>
+                                <Input type="text" id="email" placeholder={t('email')} className="w-full" />
                             </Field>
 
                             <Field>
-                                <FieldLabel>{t('password')}</FieldLabel>
-                                <Input type="password" placeholder={t('password')} className="w-full mb-4" />
+                                <FieldLabel htmlFor="password">{t('password')}</FieldLabel>
+                                <Input type="password" id="password" placeholder={t('password')} className="w-full mb-5" />
                             </Field>
                         </FieldGroup>
 
