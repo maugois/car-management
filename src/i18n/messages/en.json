@@ -2,5 +2,21 @@
   "metadata": {
     "title": "Car Management",
     "description": "Application to manage cars"
+  },
+
+  "languageSwitcher": {
+    "english": "English",
+    "portuguese": "Português"
+  },
+
+  "login": {
+    "welcome": "Welcome",
+    "title": "Car Management",
+    "description": "Log in with your email and password.",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register here"
   }
 }

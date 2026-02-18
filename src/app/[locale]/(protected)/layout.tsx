@@ -3,10 +3,7 @@ import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
-import { ThemeProvider } from 'next-themes';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import ThemeSwitcher from '@/components/ThemeSwitcher';
-import "./globals.css";
+import "../globals.css";
 
 type Props = {
   children: React.ReactNode;
@@ -20,9 +17,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    icons: {
-      icon: "/assets/icons/favicon.ico",
-    },
   };
 }
 
@@ -34,17 +28,11 @@ export default async function RootLayout({ children, params, }: Readonly<{ child
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <body className={`antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextIntlClientProvider locale={locale}>
-            <header className="flex gap-2 items-center absolute top-8 right-5">
-              <ThemeSwitcher />
-              <LanguageSwitcher />
-            </header>
-            {children}
-          </NextIntlClientProvider>
-        </ThemeProvider>
+        <NextIntlClientProvider locale={locale}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

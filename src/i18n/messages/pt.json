@@ -2,5 +2,21 @@
   "metadata": {
     "title": "Gestão de carros",
     "description": "Aplicação para gerenciar carros"
+  },
+
+  "languageSwitcher": {
+    "english": "Inglês",
+    "portuguese": "Português"
+  },
+
+  "login": {
+    "welcome": "Bem-vindo",
+    "title": "Gerenciamento de carros",
+    "description": "Faça o login com seu e-mail e senha.",
+    "email": "E-mail",
+    "password": "Senha",
+    "loginButton": "Entrar",
+    "noAccount": "Não tem uma conta?",
+    "registerLink": "Registre-se aqui"
   }
 }
