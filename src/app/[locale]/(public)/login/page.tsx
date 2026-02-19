@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import PasswordInput from "@/components/PasswordInput";
 import {
   Field,
   FieldDescription,
@@ -30,12 +31,12 @@ export default async function LoginPage() {
                         <FieldGroup>
                             <Field>
                                 <FieldLabel htmlFor="email">{t('email')}</FieldLabel>
-                                <Input type="text" id="email" placeholder={t('email')} className="w-full" />
+                                <Input type="email" id="email" placeholder={t('email')} className="w-full" required />
                             </Field>
 
-                            <Field>
+                            <Field className="mb-5">
                                 <FieldLabel htmlFor="password">{t('password')}</FieldLabel>
-                                <Input type="password" id="password" placeholder={t('password')} className="w-full mb-5" />
+                                <PasswordInput id="password" placeholder={t('password')} />
                             </Field>
                         </FieldGroup>
 

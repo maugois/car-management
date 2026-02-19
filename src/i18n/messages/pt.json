@@ -26,9 +26,48 @@
     "email": "E-mail",
     "name": "Nome Completo",
     "password": "Senha",
-    "loginButton": "Registrar",
+    "registerButton": "Registrar",
     "noAccount": "Já tem uma conta?",
     "registerLink": "Acesse aqui",
-    "confirmPassword": "Confirmar Senha"
+    "confirmPassword": "Confirmar Senha",
+    "termsPrefix": "Ao se registrar, você concorda com nossos",
+    "termsLink": "Termos e Condições"
+  },
+
+  "termsDialog": {
+    "title": "Termos e Condições",
+    "description": "Leia atentamente antes de continuar.",
+    "closeButton": "Entendi",
+
+    "sections": {
+      "acceptance": {
+        "title": "1. Aceitação dos Termos",
+        "content": "Ao acessar e utilizar esta plataforma, você declara que leu, compreendeu e concorda com os presentes Termos e Condições. Caso não concorde com qualquer parte destes termos, não utilize o sistema."
+      },
+      "usage": {
+        "title": "2. Uso da Plataforma",
+        "content": "A plataforma é destinada ao gerenciamento e organização de informações relacionadas a veículos. O usuário compromete-se a utilizar o sistema apenas para fins legítimos, fornecendo informações verdadeiras e atualizadas."
+      },
+      "account": {
+        "title": "3. Cadastro e Conta",
+        "content": "Ao criar uma conta, o usuário é responsável por manter a confidencialidade de suas credenciais de acesso, bem como por todas as atividades realizadas em sua conta."
+      },
+      "privacy": {
+        "title": "4. Privacidade",
+        "content": "As informações fornecidas pelos usuários poderão ser armazenadas e utilizadas exclusivamente para fins de funcionamento da plataforma, respeitando os princípios básicos de privacidade e proteção de dados."
+      },
+      "liability": {
+        "title": "5. Limitação de Responsabilidade",
+        "content": "A plataforma é fornecida \"como está\", sem garantias de qualquer natureza. Não nos responsabilizamos por eventuais danos decorrentes do uso ou da impossibilidade de uso do sistema."
+      },
+      "changes": {
+        "title": "6. Alterações nos Termos",
+        "content": "Reservamo-nos o direito de modificar estes Termos e Condições a qualquer momento. Recomendamos que o usuário revise periodicamente este conteúdo."
+      },
+      "general": {
+        "title": "7. Disposições Gerais",
+        "content": "O uso contínuo da plataforma após alterações nos Termos será interpretado como aceitação das modificações realizadas."
+      }
+    }
   }
 }

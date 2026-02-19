@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import PasswordInput from "@/components/PasswordInput";
 import {
   Field,
   FieldDescription,
@@ -10,6 +11,7 @@ import {
   FieldLegend,
   FieldSet,
 } from "@/components/ui/field"
+import TermsDialog from "@/features/auth/components/TermsDialog";
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 
@@ -28,27 +30,32 @@ export default async function RegisterPage() {
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">{t('email')}</FieldLabel>
-                <Input type="text" id="email" placeholder={t('email')} className="w-full" />
+                <Input type="email" id="email" placeholder={t('email')} className="w-full" required />
               </Field>
 
               <Field>
                 <FieldLabel htmlFor="name">{t('name')}</FieldLabel>
-                <Input type="text" id="name" placeholder={t('name')} className="w-full" />
+                <Input type="text" id="name" placeholder={t('name')} className="w-full" required />
               </Field>
 
               <Field>
                 <FieldLabel htmlFor="password">{t('password')}</FieldLabel>
-                <Input type="password" id="password" placeholder={t('password')} className="w-full" />
+                <PasswordInput id="password" placeholder={t('password')} />
               </Field>
 
-              <Field>
+              <Field className="mb-5">
                 <FieldLabel htmlFor="confirmPassword">{t('confirmPassword')}</FieldLabel>
-                <Input type="password" id="confirmPassword" placeholder={t('confirmPassword')} className="w-full mb-5" />
+                <PasswordInput id="confirmPassword" placeholder={t('confirmPassword')} />
               </Field>
             </FieldGroup>
 
+            <p className="text-center text-sm text-muted-foreground">
+              {t('termsPrefix')}{" "}
+              <TermsDialog triggerText={t('termsLink')} />.
+            </p>
+
             <Button className="cursor-pointer">
-              {t('loginButton')}
+              {t('registerButton')}
             </Button>
           </FieldSet>
         </form>
