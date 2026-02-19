@@ -69,5 +69,21 @@
         "content": "O uso contínuo da plataforma após alterações nos Termos será interpretado como aceitação das modificações realizadas."
       }
     }
+  },
+
+  "Dashboard": {
+    "title": "Painel de Controle",
+    "welcome": "Bem-vindo ao Painel de Controle",
+    "model": "Modelo",
+    "brand": "Marca",
+    "color": "Cor",
+    "year": "Ano",
+    "options": "Opções",
+    "titleTable": "Lista de Carros",
+    "placeholderModel": "Digite o modelo",
+    "placeholderBrand": "Digite a marca",
+    "placeholderYear": "Digite o ano",
+    "filterButton": "Filtrar",
+    "clearButton": "Limpar"
   }
 }

@@ -69,5 +69,21 @@
         "content": "Continued use of the platform after changes to the Terms will be interpreted as acceptance of the modifications."
       }
     }
+  },
+
+  "Dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to the Dashboard",
+    "model": "Model",
+    "brand": "Brand",
+    "color": "Color",
+    "year": "Year",
+    "options": "Options",
+    "titleTable": "Car List",
+      "placeholderModel": "Enter the model",
+    "placeholderBrand": "Enter the brand",
+    "placeholderYear": "Enter the year",
+    "filterButton": "Filter",
+    "clearButton": "Clear"
   }
 }
