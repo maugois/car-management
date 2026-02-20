@@ -4,6 +4,7 @@ import SearchDataTable from '@/features/car-management/components/SearchDataTabl
 import { Button } from "@/components/ui/button";
 import { IoIosAdd } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
+import PaginationDataTable from '@/features/car-management/components/PaginationDataTable';
 
 export default async function DashboardPage() {
     const t = await getTranslations('Dashboard');
@@ -26,6 +27,7 @@ export default async function DashboardPage() {
                 <div className='flex flex-col justify-between gap-10'>
                     <SearchDataTable />
                     <FieldDataTable />
+                    <PaginationDataTable />
                 </div>
             </section>
         </main>

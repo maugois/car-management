@@ -80,11 +80,15 @@
     "year": "Year",
     "options": "Options",
     "titleTable": "Car List",
-      "placeholderModel": "Enter the model",
+    "placeholderModel": "Enter the model",
     "placeholderBrand": "Enter the brand",
     "placeholderYear": "Enter the year",
     "filterButton": "Filter",
     "clearButton": "Clear",
-    "addCar": "Add Car"
+    "addCar": "Add Car",
+    "paginationShowing": "Showing 1 to 10 of 18 results",
+    "paginationPage": "Rows per page",
+    "next": "Next",
+    "previous": "Previous"
   }
 }

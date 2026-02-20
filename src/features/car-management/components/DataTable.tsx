@@ -58,7 +58,13 @@ const table = useReactTable({
                 className="hover:bg-muted/50 transition-colors"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="py-3">
+                  <TableCell 
+                    key={cell.id}
+                    className={`py-3 ${
+                      (cell.column.columnDef.meta as { className?: string })?.className ?? ""
+                    }`} 
+                    style={{width: cell.column.getSize(),}}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

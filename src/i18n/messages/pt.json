@@ -85,5 +85,10 @@
     "placeholderYear": "Digite o ano",
     "filterButton": "Filtrar",
     "clearButton": "Limpar",
-    "addCar": "Adicionar Carro"}
+    "addCar": "Adicionar Carro",
+    "paginationShowing": "Exibindo 1 a 10 de 18 resultados",
+    "paginationPage": "Linhas por página",
+    "next": "Próximo",
+    "previous": "Anterior"
+  }
 }
