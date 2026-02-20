@@ -84,6 +84,7 @@
     "placeholderBrand": "Enter the brand",
     "placeholderYear": "Enter the year",
     "filterButton": "Filter",
-    "clearButton": "Clear"
+    "clearButton": "Clear",
+    "addCar": "Add Car"
   }
 }

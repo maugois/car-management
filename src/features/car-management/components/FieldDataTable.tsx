@@ -1,35 +1,43 @@
 import { getTranslations } from 'next-intl/server';
 import DataTable from "@/features/car-management/components/DataTable"
+import { FaEye } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
 export default async function FieldDataTable() {
     const t = await getTranslations('Dashboard');
 
     const mockData = [
         {
+            id: 1,
             model: "Civic",
             brand: "Honda",
             color: "Prata",
             year: 2022,
         },
         {
+            id: 2,
             model: "Corolla",
             brand: "Toyota",
             color: "Preto",
             year: 2021,
         },
         {
+            id: 3,
             model: "Onix",
             brand: "Chevrolet",
             color: "Branco",
             year: 2023,
         },
         {
+            id: 4,
             model: "HB20",
             brand: "Hyundai",
             color: "Vermelho",
             year: 2020,
         },
         {
+            id: 5,
             model: "Gol",
             brand: "Volkswagen",
             color: "Cinza",
