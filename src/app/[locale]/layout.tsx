@@ -38,7 +38,7 @@ export default async function RootLayout({ children, params, }: Readonly<{ child
       <body className={`antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider locale={locale}>
-            <header className="flex gap-2 items-center absolute top-8 right-5">
+            <header className="flex gap-2 items-center absolute top-8 right-8">
               <ThemeSwitcher />
               <LanguageSwitcher />
             </header>

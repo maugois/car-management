@@ -72,6 +72,7 @@
   },
 
   "Dashboard": {
+    "logout": "Sair",
     "title": "Painel de Controle",
     "welcome": "Bem-vindo ao Painel de Controle",
     "model": "Modelo",

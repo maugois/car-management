@@ -72,6 +72,7 @@
   },
 
   "Dashboard": {
+    "logout": "Logout",
     "title": "Dashboard",
     "welcome": "Welcome to the Dashboard",
     "model": "Model",
