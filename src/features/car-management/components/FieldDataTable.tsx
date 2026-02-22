@@ -77,9 +77,7 @@ export default  function FieldDataTable() {
                         cell: ({ row }) => (
                             <RowActions
                                 id={row.original.id}
-                                onView={(id) => console.log("view", id)}
-                                onEdit={(id) => console.log("edit", id)}
-                                onDelete={(id) => console.log("delete", id)}
+                                carData={row.original}
                             />
                         ),
                     },

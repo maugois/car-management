@@ -6,6 +6,7 @@ import { IoIosAdd } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
 import { CgLogOut } from "react-icons/cg";
 import PaginationDataTable from '@/features/car-management/components/PaginationDataTable';
+import { CarFormModal } from "@/components/UserFormModal";
 
 export default async function DashboardPage() {
     const t = await getTranslations('Dashboard');
@@ -23,10 +24,14 @@ export default async function DashboardPage() {
 
             <section className='flex flex-col justify-between gap-5'>
                 <div className='flex justify-end'>
-                    <Button className="flex items-center gap-2 cursor-pointer">
-                        <IoIosAdd className='size-7' />
-                        {t('addCar')}
-                    </Button>
+                    <CarFormModal 
+                        trigger={
+                            <Button className="flex items-center gap-2 cursor-pointer">
+                                <IoIosAdd className='size-7' />
+                                {t('addCar')}
+                            </Button>
+                        }
+                    />
                 </div>
                 
                 <div className='flex flex-col justify-between gap-10'>

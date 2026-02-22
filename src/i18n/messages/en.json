@@ -90,6 +90,36 @@
     "paginationShowing": "Showing 1 to 10 of 18 results",
     "paginationPage": "Rows per page",
     "next": "Next",
-    "previous": "Previous"
+    "previous": "Previous",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+
+  "Dialogs": {
+    "editCar": "Edit Car",
+    "newCar": "New Car",
+    "editTitle": "Edit {model}",
+    "addTitle": "Add New Car",
+    "editDescription": "Change the vehicle information below.",
+    "addDescription": "Fill in the details to register a new vehicle.",
+    "model": "Model",
+    "brand": "Brand",
+    "color": "Color",
+    "year": "Year",
+    "placeholderModel": "Ex: Civic",
+    "placeholderBrand": "Ex: Honda",
+    "placeholderColor": "Ex: Silver",
+    "placeholderYear": "Ex: 2024",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "createCar": "Create Car",
+    "deleteTitle": "Delete {model}",
+    "deleteDescription": "Are you sure you want to delete the {model}? This action cannot be undone.",
+    "confirm": "Delete"
+  },
+
+  "Details": {
+    
   }
 }

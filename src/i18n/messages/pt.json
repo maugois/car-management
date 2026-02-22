@@ -90,6 +90,36 @@
     "paginationShowing": "Exibindo 1 a 10 de 18 resultados",
     "paginationPage": "Linhas por página",
     "next": "Próximo",
-    "previous": "Anterior"
+    "previous": "Anterior",
+    "view": "Visualizar",
+    "edit": "Editar",
+    "delete": "Deletar"
+  },
+
+  "Dialogs": {
+    "editCar": "Editar Carro",
+    "newCar": "Novo Carro",
+    "editTitle": "Editar {model}",
+    "addTitle": "Adicionar Novo Carro",
+    "editDescription": "Altere as informações do veículo abaixo.",
+    "addDescription": "Preencha os dados para cadastrar um novo veículo.",
+    "model": "Modelo",
+    "brand": "Marca",
+    "color": "Cor",
+    "year": "Ano",
+    "placeholderModel": "Ex: Civic",
+    "placeholderBrand": "Ex: Honda",
+    "placeholderColor": "Ex: Prata",
+    "placeholderYear": "Ex: 2024",
+    "cancel": "Cancelar",
+    "saveChanges": "Salvar Alterações",
+    "createCar": "Criar Carro",
+    "deleteTitle": "Excluir {model}",
+    "deleteDescription": "Tem certeza que deseja excluir o {model}? Esta ação não pode ser desfeita.",
+    "confirm": "Excluir"
+  },
+
+  "Details": {
+
   }
 }
