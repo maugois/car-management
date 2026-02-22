@@ -120,6 +120,16 @@
   },
 
   "Details": {
-
+    "back": "Voltar ao painel",
+    "title": "Detalhes do Veículo",
+    "welcome": "Confira abaixo as informações detalhadas do carro",
+    "edit": "Editar carro",
+    "labels": {
+      "model": "Modelo",
+      "brand": "Marca",
+      "color": "Cor",
+      "year": "Ano",
+      "id": "Identificador"
+    }
   }
 }

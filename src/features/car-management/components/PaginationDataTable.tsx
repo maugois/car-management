@@ -24,7 +24,7 @@ export default async function PaginationDataTable() {
     return (
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-5">
             <Field orientation="horizontal" className="flex flex-col sm:flex-row gap-10 w-fit">
-                <p className="text-gray-300 text-sm">
+                <p className="font-semibold text-foreground text-sm">
                     {t('paginationShowing')}
                 </p>
 

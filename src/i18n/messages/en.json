@@ -120,6 +120,16 @@
   },
 
   "Details": {
-    
+    "back": "Back to dashboard",
+    "title": "Vehicle Details",
+    "welcome": "Check the detailed car information below",
+    "edit": "Edit car",
+    "labels": {
+      "model": "Model",
+      "brand": "Brand",
+      "color": "Color",
+      "year": "Year",
+      "id": "Identifier"
+    }
   }
 }
