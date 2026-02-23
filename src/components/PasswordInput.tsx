@@ -1,5 +1,6 @@
 'use client';
 
+import { UseFormRegisterReturn } from "react-hook-form";
 import { useState } from 'react';
 import { FaEyeSlash } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
@@ -9,9 +10,11 @@ import { Button } from '@/components/ui/button';
 interface PasswordInputProps {
   id: string;
   placeholder: string;
+  className: string;
+  registration: UseFormRegisterReturn;
 }
 
-export default function PasswordInput({ id, placeholder }: PasswordInputProps) {
+export default function PasswordInput({ id, placeholder, className, registration }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -20,8 +23,8 @@ export default function PasswordInput({ id, placeholder }: PasswordInputProps) {
         type={showPassword ? 'text' : 'password'}
         id={id}
         placeholder={placeholder}
-        className="w-full pr-10"
-        required
+        className={`w-full pr-10 ${className}`}
+        {...registration}
       />
       <Button
         type="button"

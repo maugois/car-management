@@ -17,7 +17,9 @@
     "password": "Senha",
     "loginButton": "Entrar",
     "noAccount": "Não tem uma conta?",
-    "registerLink": "Registre-se aqui"
+    "registerLink": "Registre-se aqui",
+    "error_invalid_credentials": "Credenciais inválidas (e-mail ou senha incorreta)",
+    "error_server": "Tente novamente mais tarde!"
   },
 
   "register": {

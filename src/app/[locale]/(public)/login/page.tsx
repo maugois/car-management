@@ -1,18 +1,8 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import PasswordInput from "@/components/PasswordInput";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldLegend,
-  FieldSet,
-} from "@/components/ui/field"
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import LoginForm from "@/features/auth/components/LoginForm";
 
 export default async function LoginPage() {
   const t = await getTranslations('login');
@@ -22,29 +12,8 @@ export default async function LoginPage() {
             <Card className="w-115 py-6 px-15 hover:shadow-lg transition-shadow duration-300">
                 <Image src="/assets/images/logo-car.jpg" alt="Car Icon" width={115} height={115} className="mx-auto rounded-full shadow-md hover:shadow-lg transition-shadow duration-300" />
                 <h2 className="text-center text-2xl font-semibold">{t('welcome')}</h2>
-                
-                <form>
-                    <FieldSet>
-                        <FieldLegend className="text-center">{t('title')}</FieldLegend>
-                        <FieldDescription className="text-center">{t('description')}</FieldDescription>
 
-                        <FieldGroup>
-                            <Field>
-                                <FieldLabel htmlFor="email">{t('email')}</FieldLabel>
-                                <Input type="email" id="email" placeholder={t('email')} className="w-full" required />
-                            </Field>
-
-                            <Field className="mb-5">
-                                <FieldLabel htmlFor="password">{t('password')}</FieldLabel>
-                                <PasswordInput id="password" placeholder={t('password')} />
-                            </Field>
-                        </FieldGroup>
-
-                        <Button className="cursor-pointer">
-                            {t('loginButton')}
-                        </Button>
-                    </FieldSet>
-                </form>
+                <LoginForm />
 
                 <hr />
 

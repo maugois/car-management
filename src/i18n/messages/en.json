@@ -17,7 +17,9 @@
     "password": "Password",
     "loginButton": "Login",
     "noAccount": "Don't have an account?",
-    "registerLink": "Register here"
+    "registerLink": "Register here",
+    "error_invalid_credentials": "Invalid credentials (email or password incorrect)",
+    "error_server": "Try again later"
   },
 
   "register": {
