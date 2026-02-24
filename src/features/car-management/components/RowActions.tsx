@@ -15,7 +15,7 @@ import { DeleteCarModal } from "./DeleteCarModal";
 import { useTranslations } from "next-intl";
 
 interface RowActionsProps {
-  id: number;
+  id: string | number;
   carData?: any;
 }
 

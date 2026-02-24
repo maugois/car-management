@@ -24,3 +24,5 @@ export const CarSchema = z.object({
 });
 
 export type carData = z.infer<typeof CarSchema>;
+
+export type CarResponse = carData & { id: number | string };
