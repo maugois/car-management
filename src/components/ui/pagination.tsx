@@ -1,10 +1,12 @@
+"use client"
+
 import * as React from "react"
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   MoreHorizontalIcon,
 } from "lucide-react"
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import { cn } from "@/lib/utils"
 import { buttonVariants, type Button } from "@/components/ui/button"
 
@@ -65,12 +67,12 @@ function PaginationLink({
   )
 }
 
-async function PaginationPrevious({
+function PaginationPrevious({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   
-  const t = await getTranslations("Dashboard");
+  const t = useTranslations("Dashboard");
 
   return (
     <PaginationLink
@@ -85,12 +87,12 @@ async function PaginationPrevious({
   )
 }
 
-async function PaginationNext({
+function PaginationNext({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   
-  const t = await getTranslations("Dashboard");
+  const t = useTranslations("Dashboard");
 
   return (
     <PaginationLink

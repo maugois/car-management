@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import {
   ColumnDef,
   flexRender,
@@ -22,7 +23,8 @@ interface DataTableProps<TData, TValue> {
 }
 
 export default function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
-const table = useReactTable({
+  const t = useTranslations("Dashboard")
+  const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -73,7 +75,7 @@ const table = useReactTable({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                {t("resultsTable")}
               </TableCell>
             </TableRow>
           )}

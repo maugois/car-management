@@ -19,8 +19,9 @@ export function useCars(filters: Record<string, any> = {}) {
   const queryClient = useQueryClient();
 
   const carsQuery = useQuery({
-    queryKey: ["cars", filters],
+    queryKey: ["cars", filters], 
     queryFn: () => getAllCars(filters),
+    placeholderData: (previousData) => previousData,
   });
 
   const createMutation = useMutation({

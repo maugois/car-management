@@ -10,7 +10,7 @@ import { FaFilter } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
 import { useFilterSchema, type FilterData } from "../schemas/filter";
 
-export default function SearchDataTable() {
+export default function SearchDataTable({ onFilter }: { onFilter: (data: FilterData) => void }) {
     const t = useTranslations('Dashboard');
     const schema = useFilterSchema();
 
@@ -25,8 +25,12 @@ export default function SearchDataTable() {
     });
 
     const onSubmit = (data: FilterData) => {
-        console.log("Filtros aplicados:", data);
+        onFilter(data);
+    };
 
+    const handleClear = () => {
+        reset();
+        onFilter({ brand: "", model: "", year: "" });
     };
 
     return (
@@ -55,7 +59,7 @@ export default function SearchDataTable() {
                                     type="text" 
                                     id="model" 
                                     placeholder={t('placeholderModel')} 
-                                    className="w-full" 
+                                    className={`w-full ${errors.model ? "border-red-500" : ""}`}
                                 />
                             </div>
                         </div>
@@ -68,7 +72,7 @@ export default function SearchDataTable() {
                                     type="text" 
                                     id="year" 
                                     placeholder={t('placeholderYear')} 
-                                    className="w-full" 
+                                    className={`w-full ${errors.year ? "border-red-500" : ""}`}
                                 />
                             </div>
                         </div>
@@ -82,7 +86,7 @@ export default function SearchDataTable() {
 
                             <Button 
                                 type="button"
-                                onClick={() => reset()}
+                                onClick={handleClear}
                                 className="cursor-pointer text-white hover:text-white bg-neutral-500 hover:bg-neutral-600 focus:ring-neutral-300" 
                                 variant={'outline'}
                             >

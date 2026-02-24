@@ -3,17 +3,35 @@ import { useTranslations } from "next-intl";
 import DataTable from "@/features/car-management/components/DataTable"
 import RowActions from "@/features/car-management/components/RowActions"
 import { ColumnDef } from "@tanstack/react-table"
-import { CarResponse } from "../schemas/car";
+import { type CarFormData } from "../schemas/car";
 import { useCars } from "@/features/car-management/hooks/use-cars"
-import { useMemo, useState } from "react";
+import { useMemo, useEffect } from "react";
 import { Spinner } from "@/components/ui/spinner";
 
-export default  function FieldDataTable() {
-    const t =  useTranslations('Dashboard');
-    const [filters, setFilters] = useState({});
+interface FieldDataTableProps {
+  queryParams: {
+    page: number;
+    size: number;
+    brand: string;
+    model: string;
+    year: string;
+  };
+  onDataLoaded: (total: number) => void;
+}
 
-    const { carsQuery } = useCars(filters);
+export default  function FieldDataTable({ queryParams, onDataLoaded }: FieldDataTableProps) {
+    const t =  useTranslations('Dashboard');
+
+    const { carsQuery } = useCars(queryParams);
     const { data: rawData, isLoading, isError } = carsQuery;
+
+    useEffect(() => {
+        if (rawData?.totalElements !== undefined) {
+            onDataLoaded(rawData.totalElements);
+        } else if (Array.isArray(rawData)) {
+            onDataLoaded(rawData.length);
+        }
+    }, [rawData, onDataLoaded]);
 
     const errorMessage = useMemo(() => {
         if (isError) return t('errors.generic');
@@ -33,7 +51,7 @@ export default  function FieldDataTable() {
         return cars.length;
     }, [rawData, cars]);
 
-    const columns = useMemo((): ColumnDef<CarResponse>[] => [
+    const columns = useMemo((): ColumnDef<CarFormData & {id: string}>[] => [
         { 
             accessorKey: "model", 
             header: `${t('model')}`,   
