@@ -121,7 +121,10 @@
     "createCar": "Create Car",
     "deleteTitle": "Delete {model}",
     "deleteDescription": "Are you sure you want to delete the {model}? This action cannot be undone.",
-    "confirm": "Delete"
+    "confirm": "Delete",
+    "successUpdate": "Car updated successfully!",
+    "successCreate": "Car registered successfully!",
+    "errorServer": "Error processing request. Please try again."
   },
 
   "Details": {

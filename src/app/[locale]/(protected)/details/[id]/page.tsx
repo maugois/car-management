@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Button } from "@/components/ui/button";
-import { CarFormModal } from "@/components/UserFormModal";
+import { CarFormModal } from "@/components/CarFormModal";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { TbListDetails } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";

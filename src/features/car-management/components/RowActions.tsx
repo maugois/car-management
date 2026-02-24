@@ -10,7 +10,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { CarFormModal } from "@/components/UserFormModal";
+import { CarFormModal } from "@/components/CarFormModal";
 import { DeleteCarModal } from "./DeleteCarModal";
 import { useTranslations } from "next-intl";
 

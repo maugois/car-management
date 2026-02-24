@@ -121,7 +121,10 @@
     "createCar": "Criar Carro",
     "deleteTitle": "Excluir {model}",
     "deleteDescription": "Tem certeza que deseja excluir o {model}? Esta ação não pode ser desfeita.",
-    "confirm": "Excluir"
+    "confirm": "Excluir",
+    "successUpdate": "Carro atualizado com sucesso!",
+    "successCreate": "Carro cadastrado com sucesso!",
+    "errorServer": "Erro ao processar requisição. Tente novamente."
   },
 
   "Details": {

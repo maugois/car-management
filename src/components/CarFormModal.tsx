@@ -1,5 +1,9 @@
 'use client'
 
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "react-toastify"
+
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -15,13 +19,10 @@ import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useTranslations } from "next-intl";
+import { CarSchema, type carData } from "@/features/car-management/schemas/car"
 
-interface Car {
+interface Car extends carData {
   id?: string;
-  model: string;
-  brand: string;
-  color: string;
-  year: string;
 }
 
 interface CarModalProps {
@@ -33,8 +34,40 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
   const isEditing = Boolean(car);
   const t =  useTranslations('Dialogs');
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        reset
+    } = useForm<carData>({
+        resolver: zodResolver(CarSchema),
+        defaultValues: {
+            brand: car?.brand || "",
+            model: car?.model || "",
+            color: car?.color || "",
+            year: car?.year ? String(car.year) : "",
+        }
+    });
+
+    const onSubmit = async (data: carData) => {
+        try {
+            console.log("Dados validados:", data);
+            
+            if (isEditing) {
+
+                toast.success(t('successUpdate'));
+            } else {
+
+                toast.success(t('successCreate'));
+            }
+            
+        } catch (error) {
+            toast.error(t('errorServer'));
+        }
+    };
+
   return (
-    <Dialog>
+    <Dialog onOpenChange={(open) => !open && reset()}>
         <DialogTrigger asChild>
             {trigger || (
             <Button variant="outline">
@@ -44,9 +77,7 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-sm">
-            <form action={async (formData) => {
-                console.log("Dados do formulário:", Object.fromEntries(formData));
-            }}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <DialogHeader>
                     <DialogTitle>
                         {isEditing 
@@ -59,45 +90,50 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
                     </DialogDescription>
                 </DialogHeader>
 
-                <FieldGroup className="py-4">
+                <FieldGroup className="py-4 space-y-4">
                     <Field>
                         <Label htmlFor="model">{t('model')}</Label>
                         <Input 
                             id="model" 
-                            name="model" 
-                            defaultValue={car?.model || ""} 
+                            {...register("model")}
                             placeholder={t('placeholderModel')}
+                            className={errors.model ? "border-red-500" : ""}
                         />
+                        {errors.model && <span className="text-red-500 text-xs">{errors.model.message}</span>}
                     </Field>
 
                     <Field>
                         <Label htmlFor="brand">{t('brand')}</Label>
                         <Input 
                             id="brand" 
-                            name="brand" 
-                            defaultValue={car?.brand || ""} 
+                            {...register("brand")}
                             placeholder={t('placeholderBrand')}
+                            className={errors.brand ? "border-red-500" : ""}
                         />
+                        {errors.brand && <span className="text-red-500 text-xs">{errors.brand.message}</span>}
                     </Field>
 
                     <Field>
                         <Label htmlFor="color">{t('color')}</Label>
                         <Input 
                             id="color" 
-                            name="color" 
-                            defaultValue={car?.color || ""} 
+                            {...register("color")}
                             placeholder={t('placeholderColor')}
+                            className={errors.color ? "border-red-500" : ""}
                         />
+                        {errors.color && <span className="text-red-500 text-xs">{errors.color.message}</span>}
                     </Field>
 
                     <Field>
                         <Label htmlFor="year">{t('year')}</Label>
                         <Input 
                             id="year" 
-                            name="year" 
-                            defaultValue={car?.year || ""} 
+                            {...register("year")}
                             placeholder={t('placeholderYear')}
+                            maxLength={4}
+                            className={errors.year ? "border-red-500" : ""}
                         />
+                        {errors.year && <span className="text-red-500 text-xs">{errors.year.message}</span>}
                     </Field>
                 </FieldGroup>
 
@@ -108,8 +144,8 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
                         </Button>
                     </DialogClose>
 
-                    <Button type="submit" className="cursor-pointer">
-                        {isEditing ? t('saveChanges') : t('createCar')}
+                    <Button type="submit" className="cursor-pointer" disabled={isSubmitting}>
+                        {isSubmitting ? "..." : (isEditing ? t('saveChanges') : t('createCar'))}
                     </Button>
                 </DialogFooter>
             </form>

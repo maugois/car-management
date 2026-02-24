@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { IoIosAdd } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
 import PaginationDataTable from '@/features/car-management/components/PaginationDataTable';
-import { CarFormModal } from "@/components/UserFormModal";
+import { CarFormModal } from "@/components/CarFormModal";
 import { LogoutButton } from "@/features/auth/components/LogoutButton";
 
 export default async function DashboardPage() {
