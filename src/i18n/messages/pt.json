@@ -21,7 +21,21 @@
     "error_invalid_credentials": "Credenciais inválidas (e-mail ou senha incorreta)",
     "error_server": "Erro no servidor. Tente novamente mais tarde!",
     "success_message": "Usuário registrado com sucesso!",
-    "logout_success_message": "Sessão encerrada com sucesso. Até logo!"
+    "register_success_message": "Usuário registrado com sucesso!",
+    "logout_success_message": "Sessão encerrada com sucesso. Até logo!",
+    "errors": {
+      "unauthorized": "Sua sessão expirou. Faça login novamente.",
+      "fetch_failed": "Não foi possível realizar o login.",
+      "generic": "Ocorreu um erro inesperado.",
+      "server_error": "Erro interno no servidor (500).",
+      "forbidden": "Você não tem permissão para acessar este recurso."
+    },
+    "validation": {
+      "email_required": "O e-mail é obrigatório",
+      "email_invalid": "Insira um endereço de e-mail válido",
+      "password_required": "A senha é obrigatória",
+      "password_min": "A senha deve ter no mínimo 6 caracteres"
+    }
   },
 
   "register": {
@@ -36,7 +50,22 @@
     "confirmPassword": "Confirmar Senha",
     "termsPrefix": "Ao se registrar, você concorda com nossos",
     "termsLink": "Termos e Condições",
-    "error_server": "Erro ao conectar com o servidor. Tente mais tarde."
+    "errors": {
+      "unauthorized": "Sua sessão expirou. Faça login novamente.",
+      "fetch_failed": "Não foi possível realizar o registro.",
+      "generic": "Ocorreu um erro inesperado.",
+      "server_error": "Erro interno no servidor (500).",
+      "forbidden": "Você não tem permissão para acessar este recurso."
+    },
+    "validation": {
+      "email_required": "O e-mail é obrigatório",
+      "email_invalid": "Insira um endereço de e-mail válido",
+      "name_required": "O nome completo é obrigatório",
+      "password_required": "A senha é obrigatória",
+      "password_min": "Mínimo 6 caracteres",
+      "confirm_required": "A confirmação é obrigatória",
+      "passwords_dont_match": "As senhas não coincidem"
+    }
   },
 
   "termsDialog": {
@@ -98,7 +127,14 @@
     "previous": "Anterior",
     "view": "Visualizar",
     "edit": "Editar",
-    "delete": "Deletar"
+    "delete": "Deletar",
+    "errors": {
+      "unauthorized": "Sua sessão expirou. Faça login novamente.",
+      "fetch_failed": "Não foi possível carregar a lista de carros.",
+      "generic": "Ocorreu um erro inesperado.",
+      "server_error": "Erro interno no servidor (500).",
+      "forbidden": "Você não tem permissão para acessar este recurso."
+    }
   },
 
   "Dialogs": {
@@ -138,6 +174,33 @@
       "color": "Cor",
       "year": "Ano",
       "id": "Identificador"
+    }
+  },
+
+"carSchema": {
+    "title": "Gerenciamento de Veículos",
+    "fields": {
+      "model": "Modelo",
+      "brand": "Marca",
+      "color": "Cor",
+      "year": "Ano",
+      "options": "Ações"
+    },
+    "placeholders": {
+      "search": "Filtrar por modelo...",
+      "select_brand": "Selecione uma marca"
+    },
+    "validation": {
+      "model_required": "O modelo é obrigatório",
+      "brand_required": "A marca é obrigatória",
+      "color_required": "A cor é obrigatória",
+      "year_invalid": "Ano deve estar entre 1900 e 2030"
+    }
+  },
+
+  "filters": {
+    "validation": {
+      "at_least_one": "Pelo menos um dos campos (Marca, Modelo ou Ano) deve ter mais de 1 caractere"
     }
   }
 }

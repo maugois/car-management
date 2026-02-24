@@ -1,6 +1,9 @@
 import { RegisterFormData } from "../schemas/register";
+import { getTranslations } from 'next-intl/server';
 
 export async function registerUser(data: RegisterFormData) {
+  const t = await getTranslations('register');
+
   try {
     const response = await fetch("http://localhost:8080/api/v1/users", {
       method: "POST",
@@ -17,11 +20,11 @@ export async function registerUser(data: RegisterFormData) {
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.message || "Erro ao registrar usuário");
+      throw new Error(t("errors.fetch_failed"));
     }
 
     return { success: true };
   } catch (error: any) {
-    return { success: false, error: error.message };
+    return { success: false, error: t("errors.fetch_failed") };
   }
 }

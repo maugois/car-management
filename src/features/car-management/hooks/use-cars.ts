@@ -4,7 +4,16 @@ import { createCar } from "../actions/create-car";
 import { editCar } from "../actions/edit-car";
 import { deleteCar } from "../actions/delete-car";
 import { getCarById } from "../actions/get-id-car";
-import { carData } from "../schemas/car";
+import { type CarFormData } from "../schemas/car";
+
+export function useGetCar(id: string | number | undefined) {
+  return useQuery({
+    queryKey: ["car", id],
+    queryFn: () => getCarById(id!),
+    enabled: !!id,
+    staleTime: 1000 * 60 * 5,
+  });
+}
 
 export function useCars(filters: Record<string, any> = {}) {
   const queryClient = useQueryClient();
@@ -14,17 +23,8 @@ export function useCars(filters: Record<string, any> = {}) {
     queryFn: () => getAllCars(filters),
   });
 
-  const useGetCar = (id: string | number | undefined) => {
-    return useQuery({
-      queryKey: ["car", id],
-      queryFn: () => getCarById(id!),
-      enabled: !!id,
-      staleTime: 1000 * 60 * 5,
-    });
-  };
-
   const createMutation = useMutation({
-    mutationFn: (data: carData) => createCar(data),
+    mutationFn: (data: CarFormData) => createCar(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cars"] });
     },

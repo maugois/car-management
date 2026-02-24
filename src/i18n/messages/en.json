@@ -20,8 +20,22 @@
     "registerLink": "Register here",
     "error_invalid_credentials": "Invalid credentials (email or password incorrect)",
     "error_server": "Server error. Try again later!",
+    "success_message": "User successfully registered!",
     "register_success_message": "User registered successfully!",
-    "logout_success_message": "Successfully logged out. See you soon!"
+    "logout_success_message": "Successfully logged out. See you soon!",
+    "Errors": {
+      "unauthorized": "Your session has expired. Please log in again.",
+      "fetch_failed": "Unable to complete the login process.",
+      "generic": "An unexpected error has occurred.",
+      "server_error": "Internal server error (500).",
+      "forbidden": "You do not have permission to access this resource."
+    },
+    "validation": {
+      "email_required": "Email is required",
+      "email_invalid": "Enter a valid email address",
+      "password_required": "Password is required",
+      "password_min": "Minimum 6 characters"
+    }
   },
 
   "register": {
@@ -36,7 +50,22 @@
     "confirmPassword": "Confirm Password",
     "termsPrefix": "By registering, you agree to our",
     "termsLink": "Terms and Conditions",
-    "error_server": "Server error. Please try again later."
+    "Errors": {
+      "unauthorized": "Your session has expired. Please log in again.",
+      "fetch_failed": "Could not complete the registration.",
+      "generic": "An unexpected error occurred.",
+      "server_error": "Internal server error (500).",
+      "forbidden": "You do not have permission to access this resource."
+    },
+    "validation": {
+      "email_required": "Email is required",
+      "email_invalid": "Enter a valid email address",
+      "name_required": "Full name is required",
+      "password_required": "Password is required",
+      "password_min": "Minimum 6 characters",
+      "confirm_required": "Confirmation is required",
+      "passwords_dont_match": "Passwords do not match"
+    }
   },
 
   "termsDialog": {
@@ -98,7 +127,14 @@
     "previous": "Previous",
     "view": "View",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "errors": {
+      "unauthorized": "Your session has expired. Please log in again.",
+      "fetch_failed": "The car list could not be loaded.",
+      "generic": "An unexpected error occurred.",
+      "server_error": "Internal server error (500).",
+      "forbidden": "You do not have permission to access this resource."
+    }
   },
 
   "Dialogs": {
@@ -138,6 +174,33 @@
       "color": "Color",
       "year": "Year",
       "id": "Identifier"
+    }
+  },
+
+"carSchema": {
+    "title": "Vehicle Management",
+    "fields": {
+      "model": "Model",
+      "brand": "Brand",
+      "color": "Color",
+      "year": "Year",
+      "options": "Actions"
+    },
+    "placeholders": {
+      "search": "Filter by model...",
+      "select_brand": "Select a brand"
+    },
+    "validation": {
+      "model_required": "Model is required",
+      "brand_required": "Brand is required",
+      "color_required": "Color is required",
+      "year_invalid": "Year must be between 1900 and 2030"
+    }
+  },
+
+  "filters": {
+    "validation": {
+      "at_least_one": "At least one field (Brand, Model, or Year) must have more than 1 character"
     }
   }
 }

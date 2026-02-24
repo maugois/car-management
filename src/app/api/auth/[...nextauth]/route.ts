@@ -1,9 +1,9 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authenticateUser } from "@/features/auth/actions/auth-user";
 import { LoginFormData } from "@/features/auth/schemas/login";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Java Backend",
@@ -25,7 +25,6 @@ const handler = NextAuth({
           }
           return null;
         } catch (error) {
-          console.error(">>> ERRO NA CHAMADA PARA O JAVA:", error);
           return null;
         }
       },
@@ -59,7 +58,12 @@ const handler = NextAuth({
   },
   pages: {
     signIn: '/pt/login',
-  }
-});
+  },
+  session: {
+    strategy: "jwt",
+  },
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

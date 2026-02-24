@@ -1,28 +1,27 @@
 import { z } from "zod";
+import { useTranslations } from "next-intl";
 
-export const CarSchema = z.object({
-  brand: z
-    .string()
-    .trim()
-    .min(1, { message: "A marca é obrigatória" })
-    .toLowerCase(),
-  model: z
-    .string()
-    .trim()
-    .min(1, { message: "O modelo é obrigatório" })
-    .toLowerCase(),
-  color: z
-    .string()
-    .trim()
-    .min(1, { message: "A cor é obrigatório" })
-    .toLowerCase(),
-  year: z
-    .string()
-    .trim()
-    .min(1, { message: "O ano é obrigatório" })
-    .length(4, { message: "O ano deve ter 4 dígitos" }),
-});
+export const useCarFormSchema = () => {
+  const t = useTranslations('carSchema.validation');
 
-export type carData = z.infer<typeof CarSchema>;
+  return z.object({
+    brand: z
+      .string()
+      .trim()
+      .min(1, { message: t('brand_required') })
+      .toLowerCase(),
+    model: z
+      .string()
+      .trim()
+      .min(1, { message: t('model_required') })
+      .toLowerCase(),
+    color: z
+      .string()
+      .trim()
+      .min(1, { message: t('color_required') })
+      .toLowerCase(),
+    year: z.string().min(1900, t('year_invalid')).max(2030, t('year_invalid')),
+  });
+}
 
-export type CarResponse = carData & { id: number | string };
+export type CarFormData = z.infer<ReturnType<typeof useCarFormSchema>>;

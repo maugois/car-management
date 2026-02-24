@@ -21,10 +21,11 @@ import {
   FieldSet,
 } from "@/components/ui/field"
 
-import { loginSchema, type LoginFormData } from "../schemas/login";
+import { useLoginSchema, type LoginFormData } from "../schemas/login";
 
 export default function LoginForm() {
     const t = useTranslations('login');
+    const schema = useLoginSchema();
     const router = useRouter();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
@@ -51,7 +52,7 @@ export default function LoginForm() {
         handleSubmit,
         formState: { errors }
     } = useForm<LoginFormData>({
-        resolver: zodResolver(loginSchema),
+        resolver: zodResolver(schema),
         defaultValues: { email: "", password: "" }
     });
 

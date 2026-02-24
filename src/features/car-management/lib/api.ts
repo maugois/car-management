@@ -1,14 +1,21 @@
 import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getTranslations } from 'next-intl/server';
 
 export async function authorizedFetch(endpoint: string, options: RequestInit = {}) {
-    const session = await getServerSession();
+    const t = await getTranslations('login');
+    const session = await getServerSession(authOptions);
     const token = session?.user?.accessToken;
     const baseUrl = "http://localhost:8080/api/v1";
 
-    if (token) {
-        console.log("✅ Token encontrado na sessão:", token.slice(-10));
-    } else {
-        console.warn("⚠️ Nenhum token encontrado na sessão do NextAuth.");
+    if (!token) {
+        return {
+            ok: false,
+            status: 401,
+            statusText: t("errors.unauthorized"),
+            json: async () => ({ message: t("errors.unauthorized") }),
+            text: async () => t("errors.unauthorized")
+        } as Response;
     }
 
     return fetch(`${baseUrl}${endpoint}`, {

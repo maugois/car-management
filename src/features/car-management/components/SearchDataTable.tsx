@@ -8,10 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaFilter } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
-import { filterSchema, type FilterData } from "../schemas/filter";
+import { useFilterSchema, type FilterData } from "../schemas/filter";
 
 export default function SearchDataTable() {
     const t = useTranslations('Dashboard');
+    const schema = useFilterSchema();
 
     const {
         register,
@@ -19,7 +20,7 @@ export default function SearchDataTable() {
         reset,
         formState: { errors }
     } = useForm<FilterData>({
-        resolver: zodResolver(filterSchema),
+        resolver: zodResolver(schema),
         defaultValues: { brand: "", model: "", year: "" }
     });
 

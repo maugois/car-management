@@ -19,9 +19,9 @@ import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useTranslations } from "next-intl";
-import { CarSchema, type carData } from "@/features/car-management/schemas/car"
+import { useCarFormSchema, type CarFormData } from "@/features/car-management/schemas/car"
 
-interface Car extends carData {
+interface Car extends CarFormData {
   id?: string;
 }
 
@@ -31,16 +31,18 @@ interface CarModalProps {
 }
 
 export function CarFormModal({ car, trigger }: CarModalProps) {
-  const isEditing = Boolean(car);
-  const t =  useTranslations('Dialogs');
+    const isEditing = Boolean(car);
+    const t =  useTranslations('Dialogs');
+    const schema = useCarFormSchema();
+
 
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
         reset
-    } = useForm<carData>({
-        resolver: zodResolver(CarSchema),
+    } = useForm<CarFormData>({
+        resolver: zodResolver(schema),
         defaultValues: {
             brand: car?.brand || "",
             model: car?.model || "",
@@ -49,7 +51,7 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
         }
     });
 
-    const onSubmit = async (data: carData) => {
+    const onSubmit = async (data: CarFormData) => {
         try {
             console.log("Dados validados:", data);
             

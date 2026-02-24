@@ -1,29 +1,34 @@
 import { z } from "zod";
+import { useTranslations } from "next-intl";
 
-export const registerSchema = z.object({
+export const useRegisterSchema = () => {
+  const t = useTranslations("register.validation");
+
+  return z.object({
     email: z
-        .string()
-        .min(1, { message: "O e-mail é obrigatório" })
-        .email({ message: "Insira um endereço de e-mail válido" })
-        .trim()
-        .toLowerCase(),
+      .string()
+      .min(1, { message: t("email_required") })
+      .email({ message: t("email_invalid") })
+      .trim()
+      .toLowerCase(),
     name: z
-        .string()
-        .min(1, { message: "O nome completo é obrigatório" })
-        .trim()
-        .toLowerCase(),
+      .string()
+      .min(1, { message: t("name_required") })
+      .trim()
+      .toLowerCase(),
     password: z
-        .string()
-        .min(1, { message: "A senha é obrigatória" })
-        .min(6, { message: "Mínimo 6 caracteres" }),
+      .string()
+      .min(1, { message: t("password_required") })
+      .min(6, { message: t("password_min") }),
     confirmPassword: z
-        .string()
-        .min(1, { message: "A confirmação é obrigatória" })
-        .min(6, { message: "Mínimo 6 caracteres" }),
-})
-.refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas não coincidem",
+      .string()
+      .min(1, { message: t("confirm_required") })
+      .min(6, { message: t("password_min") }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: t("passwords_dont_match"),
     path: ["confirmPassword"],
-});
+  });
+};
 
-export type RegisterFormData = z.infer<typeof registerSchema>;
+export type RegisterFormData = z.infer<ReturnType<typeof useRegisterSchema>>;

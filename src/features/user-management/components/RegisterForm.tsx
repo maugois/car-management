@@ -20,19 +20,21 @@ import {
 } from "@/components/ui/field"
 import TermsDialog from "@/features/user-management/components/TermsDialog";
 import { registerUser } from "../actions/register-user";
-import { registerSchema, type RegisterFormData } from "../schemas/register";
+import { useRegisterSchema, type RegisterFormData } from "../schemas/register";
 
 export default function RegisterForm() {
     const t = useTranslations('register');
     const router = useRouter();
+    const schema = useRegisterSchema();
     const [loading, setLoading] = useState(false);
+
 
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm<RegisterFormData>({
-        resolver: zodResolver(registerSchema),
+        resolver: zodResolver(schema),
         defaultValues: { email: "", name: "", password: "", confirmPassword: "" }
     });
 
@@ -44,7 +46,7 @@ export default function RegisterForm() {
         if (result.success) {
           router.push('/login?registered=success');
         } else {
-          toast.error(result.error || t('error_server'));
+          toast.error(t('error_server'));
           setLoading(false);
         }
     }
