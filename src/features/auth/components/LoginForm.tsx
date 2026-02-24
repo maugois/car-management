@@ -32,9 +32,16 @@ export default function LoginForm() {
     useEffect(() => {
         if (searchParams.get('logout') === 'success') {
             toast.info(t('logout_success_message'));
+        }
             
+        if (searchParams.get('registered') === 'success') {
+            toast.success(t('register_success_message'));
+        }
+
+        if (searchParams.get('logout') || searchParams.get('registered')) {
             const params = new URLSearchParams(searchParams.toString());
             params.delete('logout');
+            params.delete('registered');
             window.history.replaceState(null, '', `?${params.toString()}`);
         }
     }, [searchParams, t]);
@@ -82,7 +89,7 @@ export default function LoginForm() {
                         <FieldLabel htmlFor="email">{t('email')}</FieldLabel>
                         <Input
                             {...register("email")} 
-                            type="email" 
+                            type="text" 
                             id="email" 
                             placeholder={t('email')} 
                             className={`w-full ${errors.email ? "border-red-500" : "" }`}  

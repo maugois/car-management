@@ -20,6 +20,7 @@
     "registerLink": "Registre-se aqui",
     "error_invalid_credentials": "Credenciais inválidas (e-mail ou senha incorreta)",
     "error_server": "Erro no servidor. Tente novamente mais tarde!",
+    "success_message": "Usuário registrado com sucesso!",
     "logout_success_message": "Sessão encerrada com sucesso. Até logo!"
   },
 
@@ -34,7 +35,8 @@
     "registerLink": "Acesse aqui",
     "confirmPassword": "Confirmar Senha",
     "termsPrefix": "Ao se registrar, você concorda com nossos",
-    "termsLink": "Termos e Condições"
+    "termsLink": "Termos e Condições",
+    "error_server": "Erro ao conectar com o servidor. Tente mais tarde."
   },
 
   "termsDialog": {

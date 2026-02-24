@@ -19,7 +19,7 @@ import {
   FieldSet,
 } from "@/components/ui/field"
 import TermsDialog from "@/features/user-management/components/TermsDialog";
-
+import { registerUser } from "../actions/register-user";
 import { registerSchema, type RegisterFormData } from "../schemas/register";
 
 export default function RegisterForm() {
@@ -36,10 +36,18 @@ export default function RegisterForm() {
         defaultValues: { email: "", name: "", password: "", confirmPassword: "" }
     });
 
-      function onSubmit(values: RegisterFormData) {
-          setLoading(true);
-          console.log("kdfhkds")
-      }
+    async function onSubmit(values: RegisterFormData) {
+        setLoading(true);
+        
+        const result = await registerUser(values);
+
+        if (result.success) {
+          router.push('/login?registered=success');
+        } else {
+          toast.error(result.error || t('error_server'));
+          setLoading(false);
+        }
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -52,7 +60,7 @@ export default function RegisterForm() {
                 <FieldLabel htmlFor="email">{t('email')}</FieldLabel>
                 <Input
                   {...register("email")}  
-                  type="email" 
+                  type="text" 
                   id="email" 
                   placeholder={t('email')} 
                   className={`w-full ${errors.email ? "border-red-500" : "" }`} 
@@ -101,8 +109,10 @@ export default function RegisterForm() {
             </p>
 
             <Button className="cursor-pointer">
-              {t('registerButton')}
+              {loading ? <Spinner className="size-5" /> : t('registerButton')}
             </Button>
+
+            <ToastContainer position="bottom-right" theme="colored" />
           </FieldSet>
         </form>
     )
