@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -26,7 +26,18 @@ import { loginSchema, type LoginFormData } from "../schemas/login";
 export default function LoginForm() {
     const t = useTranslations('login');
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (searchParams.get('logout') === 'success') {
+            toast.info(t('logout_success_message'));
+            
+            const params = new URLSearchParams(searchParams.toString());
+            params.delete('logout');
+            window.history.replaceState(null, '', `?${params.toString()}`);
+        }
+    }, [searchParams, t]);
     
     const {
         register,

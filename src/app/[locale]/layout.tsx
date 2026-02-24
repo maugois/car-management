@@ -35,7 +35,7 @@ export default async function RootLayout({ children, params, }: Readonly<{ child
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`antialiased`}>
+      <body className={`antialiased`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider locale={locale}>
             <header className="flex gap-2 items-center absolute top-8 right-8">

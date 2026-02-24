@@ -19,7 +19,8 @@
     "noAccount": "Don't have an account?",
     "registerLink": "Register here",
     "error_invalid_credentials": "Invalid credentials (email or password incorrect)",
-    "error_server": "Try again later"
+    "error_server": "Server error. Try again later!",
+    "logout_success_message": "Successfully logged out. See you soon!"
   },
 
   "register": {

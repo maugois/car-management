@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authenticateUser } from "@/features/auth/actions/auth-user";
+import { LoginFormData } from "@/features/auth/schemas/login";
 
 const handler = NextAuth({
   providers: [
@@ -12,9 +13,19 @@ const handler = NextAuth({
       },
       async authorize(credentials) {
         try {
-          const user = await authenticateUser(credentials as any);
-          return user;
+          const result = await authenticateUser(credentials as LoginFormData);
+          
+          if (result && result.token) {
+            return {
+              id: String(result.id),
+              name: result.name,
+              email: result.email,
+              accessToken: result.token,
+            };
+          }
+          return null;
         } catch (error) {
+          console.error(">>> ERRO NA CHAMADA PARA O JAVA:", error);
           return null;
         }
       },
@@ -22,13 +33,33 @@ const handler = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
-      return { ...token, ...user };
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          accessToken: user.accessToken,
+        };
+      }
+
+      return token;
     },
     async session({ session, token }) {
-      session.user = token as any;
+      if (token) {
+        session.user = {
+          id: token.id ?? "",
+          name: token.name ?? "",
+          email: token.email ?? "",
+          accessToken: token.accessToken ?? "",
+        };
+      }
       return session;
     },
   },
+  pages: {
+    signIn: '/pt/login',
+  }
 });
 
 export { handler as GET, handler as POST };

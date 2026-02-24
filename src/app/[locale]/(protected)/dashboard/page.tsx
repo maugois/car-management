@@ -4,9 +4,9 @@ import SearchDataTable from '@/features/car-management/components/SearchDataTabl
 import { Button } from "@/components/ui/button";
 import { IoIosAdd } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
-import { CgLogOut } from "react-icons/cg";
 import PaginationDataTable from '@/features/car-management/components/PaginationDataTable';
 import { CarFormModal } from "@/components/UserFormModal";
+import { LogoutButton } from "@/features/auth/components/LogoutButton";
 
 export default async function DashboardPage() {
     const t = await getTranslations('Dashboard');
@@ -14,10 +14,7 @@ export default async function DashboardPage() {
     return (
         <main className="min-h-screen min-w-full p-20 flex flex-col gap-10">
             <header>
-                <Button variant={'outline'} className='flex items-center cursor-pointer mb-10 font-semibold shadow-md'>
-                    <CgLogOut className='size-5' />
-                    {t("logout")}
-                </Button>
+                <LogoutButton label={t("logout")} />
                 <h1 className="flex items-center gap-2 text-3xl font-bold"><MdSpaceDashboard />{t('title')}</h1>
                 <p className="text-lg mt-2">{t('welcome')}</p>
             </header>
