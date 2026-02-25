@@ -129,6 +129,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "resultsTable": "No results.",
+    "deleteSuccess": "Success delete",
+    "deleteError": "Error delete",
     "errors": {
       "unauthorized": "Your session has expired. Please log in again.",
       "fetch_failed": "The car list could not be loaded.",

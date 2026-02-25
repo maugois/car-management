@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -9,19 +10,31 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Spinner } from "@/components/ui/spinner";
 import { useTranslations } from "next-intl";
 
 interface DeleteCarModalProps {
   carModel: string;
-  onConfirm: () => void;
+  onConfirm: () => Promise<void>;
   trigger: React.ReactNode;
+  isLoading?: boolean;
 }
 
-export function DeleteCarModal({ carModel, onConfirm, trigger }: DeleteCarModalProps) {
+export function DeleteCarModal({ carModel, onConfirm, trigger, isLoading }: DeleteCarModalProps) {
+    const [open, setOpen] = useState(false);
     const t =  useTranslations('Dialogs');
 
+    const handleConfirmInternal = async () => {
+        try {
+            await onConfirm();
+            setOpen(false); 
+        } catch (error) {
+            console.error("Erro ao confirmar:", error);
+        }
+    };
+
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 {trigger}
             </DialogTrigger>
@@ -42,10 +55,11 @@ export function DeleteCarModal({ carModel, onConfirm, trigger }: DeleteCarModalP
                     </DialogClose>
 
                     <Button  
-                        onClick={onConfirm}
+                        onClick={handleConfirmInternal}
                         className="cursor-pointer"
+                        disabled={isLoading}
                     >
-                        {t('confirm')}
+                        {isLoading ? (<Spinner className="size-4" />) : t('confirm')}
                     </Button>
                 </DialogFooter>
             </DialogContent>

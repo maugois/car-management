@@ -8,18 +8,15 @@ export const useCarFormSchema = () => {
     brand: z
       .string()
       .trim()
-      .min(1, { message: t('brand_required') })
-      .toLowerCase(),
+      .min(1, { message: t('brand_required') }),
     model: z
       .string()
       .trim()
-      .min(1, { message: t('model_required') })
-      .toLowerCase(),
+      .min(1, { message: t('model_required') }),
     color: z
       .string()
       .trim()
-      .min(1, { message: t('color_required') })
-      .toLowerCase(),
+      .min(1, { message: t('color_required') }),
     year: z
       .string()
       .min(1, { message: t('year_invalid') })

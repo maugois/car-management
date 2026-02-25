@@ -1,3 +1,5 @@
+"use server";
+
 import { type CarFormData } from "../schemas/car";
 import { authorizedFetch } from "../lib/api";
 

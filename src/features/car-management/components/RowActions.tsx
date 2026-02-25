@@ -13,6 +13,8 @@ import {
 import { CarFormModal } from "@/components/CarFormModal";
 import { DeleteCarModal } from "./DeleteCarModal";
 import { useTranslations } from "next-intl";
+import { useCars } from "@/features/car-management/hooks/use-cars";
+import { ToastContainer, toast } from "react-toastify";
 
 interface RowActionsProps {
   id: string | number;
@@ -24,9 +26,16 @@ export default function RowActions({
   carData,
 }: RowActionsProps) {
     const t =  useTranslations('Dashboard');
+    const { deleteMutation } = useCars();
 
-    const handleDelete = () => {
-        console.log("Deletando carro:", id);
+    const handleDelete = async () => {
+        try {
+            await deleteMutation.mutateAsync(id);
+            toast.success(t('deleteSuccess'));
+        } catch (error) {
+            toast.error(t('deleteError'));
+            throw error; 
+        }
     };
 
     return (
@@ -74,6 +83,7 @@ export default function RowActions({
                     <DeleteCarModal
                         carModel={carData?.model || ""}
                         onConfirm={handleDelete}
+                        isLoading={deleteMutation.isPending}
                         trigger={
                             <TooltipTrigger asChild>
                                 <Button
@@ -91,6 +101,7 @@ export default function RowActions({
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
+            <ToastContainer position="bottom-right" theme="colored"/>
         </div>
     );
 }

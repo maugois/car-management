@@ -1,3 +1,5 @@
+"use server";
+
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getTranslations } from 'next-intl/server';
@@ -9,21 +11,17 @@ export async function authorizedFetch(endpoint: string, options: RequestInit = {
     const baseUrl = "http://localhost:8080/api/v1";
 
     if (!token) {
-        return {
-            ok: false,
-            status: 401,
-            statusText: t("errors.unauthorized"),
-            json: async () => ({ message: t("errors.unauthorized") }),
-            text: async () => t("errors.unauthorized")
-        } as Response;
+        throw new Error(t("errors.unauthorized"));
     }
 
-    return fetch(`${baseUrl}${endpoint}`, {
+    const response = await fetch(`${baseUrl}${endpoint}`, {
         ...options,
         headers: {
-        "Content-Type": "application/json",
-        ...options.headers,
-        ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+            "Content-Type": "application/json",
+            ...options.headers,
+            "Authorization": `Bearer ${token}`,
         },
     });
+
+    return response;
 }

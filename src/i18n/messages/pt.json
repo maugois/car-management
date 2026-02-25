@@ -129,6 +129,8 @@
     "edit": "Editar",
     "delete": "Deletar",
     "resultsTable": "Nenhum resultado.",
+    "deleteSuccess": "Deletado com sucesso",
+    "deleteError": "Erro ao deletar",
     "errors": {
       "unauthorized": "Sua sessão expirou. Faça login novamente.",
       "fetch_failed": "Não foi possível carregar a lista de carros.",
