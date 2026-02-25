@@ -7,6 +7,8 @@ import { MdEdit } from "react-icons/md";
 import { IoLogoModelS, IoIosColorFill  } from "react-icons/io";
 import { SiBrandfolder } from "react-icons/si";
 import { RiSortNumberDesc } from "react-icons/ri";
+import { getCarById } from "@/features/car-management/actions/get-id-car";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
 interface DetailsProps {
@@ -19,13 +21,11 @@ export default async function DetailsPage({ params }: DetailsProps) {
     const t = await getTranslations('Details');
     const { id } = await params;
 
-    const car = {
-        id: id,
-        model: "Civic",
-        brand: "Honda",
-        color: "Prata",
-        year: "2024"
-    };
+    const car = await getCarById(id);
+
+    if (!car) {
+        redirect('/dashboard');
+    }
 
     return (
         <main className="min-h-screen min-w-full p-20 flex flex-col gap-10">
