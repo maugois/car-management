@@ -1,9 +1,10 @@
 'use client'
 
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "react-toastify"
-
+import { Spinner } from "./ui/spinner"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -20,6 +21,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useTranslations } from "next-intl";
 import { useCarFormSchema, type CarFormData } from "@/features/car-management/schemas/car"
+import { useCars } from "@/features/car-management/hooks/use-cars"
 
 interface Car extends CarFormData {
   id?: string;
@@ -31,15 +33,17 @@ interface CarModalProps {
 }
 
 export function CarFormModal({ car, trigger }: CarModalProps) {
+    const [isOpen, setIsOpen] = useState(false);
     const isEditing = Boolean(car);
     const t =  useTranslations('Dialogs');
     const schema = useCarFormSchema();
 
+    const { createMutation, editMutation } = useCars();
 
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: { errors },
         reset
     } = useForm<CarFormData>({
         resolver: zodResolver(schema),
@@ -51,25 +55,35 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
         }
     });
 
-    const onSubmit = async (data: CarFormData) => {
+    const onSubmit = async (formData: CarFormData) => {
         try {
-            console.log("Dados validados:", data);
-            
-            if (isEditing) {
-
+            if (isEditing && car?.id) {
+                await editMutation.mutateAsync({ 
+                    id: car.id, 
+                    data: formData 
+                });
                 toast.success(t('successUpdate'));
             } else {
-
+                await createMutation.mutateAsync(formData);
                 toast.success(t('successCreate'));
             }
-            
-        } catch (error) {
-            toast.error(t('errorServer'));
+        
+            setIsOpen(false);
+            reset();         
+        } catch (error: any) {
+            toast.error(error.message || t('errorServer'));
         }
     };
 
   return (
-    <Dialog onOpenChange={(open) => !open && reset()}>
+    <Dialog 
+        open={isOpen} 
+        onOpenChange={
+            (val) => {
+            setIsOpen(val);
+            if (!val) reset();
+        }}
+    >
         <DialogTrigger asChild>
             {trigger || (
             <Button variant="outline">
@@ -80,6 +94,7 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
 
         <DialogContent className="sm:max-w-sm">
             <form onSubmit={handleSubmit(onSubmit)}>
+                
                 <DialogHeader>
                     <DialogTitle>
                         {isEditing 
@@ -146,8 +161,16 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
                         </Button>
                     </DialogClose>
 
-                    <Button type="submit" className="cursor-pointer" disabled={isSubmitting}>
-                        {isSubmitting ? "..." : (isEditing ? t('saveChanges') : t('createCar'))}
+                    <Button 
+                        type="submit"
+                        className="cursor-pointer" 
+                        disabled={createMutation.isPending || editMutation.isPending}
+                    >
+                    {
+                        (createMutation.isPending || editMutation.isPending) 
+                        ? <Spinner className="size-4" /> 
+                        : (isEditing ? t('saveChanges') : t('createCar'))
+                    }
                     </Button>
                 </DialogFooter>
             </form>

@@ -17,7 +17,6 @@ export function useGetCar(id: string | number | undefined) {
 
 export function useCars(filters: Record<string, any> = {}) {
   const queryClient = useQueryClient();
-
   const carsQuery = useQuery({
     queryKey: ["cars", filters], 
     queryFn: () => getAllCars(filters),
@@ -45,6 +44,7 @@ export function useCars(filters: Record<string, any> = {}) {
       queryClient.invalidateQueries({ queryKey: ["cars"] });
     },
   });
+
 
   return {
     carsQuery,

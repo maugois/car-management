@@ -19,8 +19,8 @@ export const useCarFormSchema = () => {
       .string()
       .trim()
       .min(1, { message: t('color_required') })
-     .toLowerCase(),
-     year: z
+      .toLowerCase(),
+    year: z
       .string()
       .min(1, { message: t('year_invalid') })
       .refine((val) => {

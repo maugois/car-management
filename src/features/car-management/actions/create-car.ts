@@ -1,10 +1,15 @@
-import { carData } from "../schemas/car";
+import { type CarFormData } from "../schemas/car";
 import { authorizedFetch } from "../lib/api";
 
-export async function createCar(data: carData) {
+export async function createCar(data: CarFormData) {
+  const payload = {
+    ...data,
+    year: parseInt(data.year, 10)
+  };
+
   const response = await authorizedFetch("/cars", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
