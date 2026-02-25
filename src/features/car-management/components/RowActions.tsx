@@ -14,7 +14,7 @@ import { CarFormModal } from "@/components/CarFormModal";
 import { DeleteCarModal } from "./DeleteCarModal";
 import { useTranslations } from "next-intl";
 import { useCars } from "@/features/car-management/hooks/use-cars";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface RowActionsProps {
   id: string | number;
@@ -101,7 +101,6 @@ export default function RowActions({
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
-            <ToastContainer position="bottom-right" theme="colored"/>
         </div>
     );
 }

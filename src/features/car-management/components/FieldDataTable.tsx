@@ -7,6 +7,7 @@ import { type CarFormData } from "../schemas/car";
 import { useCars } from "@/features/car-management/hooks/use-cars"
 import { useMemo, useEffect } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { ToastContainer } from 'react-toastify';
 
 interface FieldDataTableProps {
   queryParams: {
@@ -104,6 +105,7 @@ export default  function FieldDataTable({ queryParams, onDataLoaded }: FieldData
                     />
                 }
             </div>
+            <ToastContainer position="bottom-right" theme="colored" />
         </article>
     );
 }

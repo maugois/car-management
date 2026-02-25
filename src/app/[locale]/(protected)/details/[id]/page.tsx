@@ -9,6 +9,7 @@ import { SiBrandfolder } from "react-icons/si";
 import { RiSortNumberDesc } from "react-icons/ri";
 import { getCarById } from "@/features/car-management/actions/get-id-car";
 import { redirect } from "next/navigation";
+import { ToastContainer } from 'react-toastify';
 import Link from "next/link";
 
 interface DetailsProps {
@@ -62,6 +63,7 @@ export default async function DetailsPage({ params }: DetailsProps) {
                   </div>
                 </div>
             </section>
+            <ToastContainer position="bottom-right" theme="colored" />
         </main>
     )
 }

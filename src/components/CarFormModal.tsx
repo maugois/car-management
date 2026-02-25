@@ -71,7 +71,7 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
             setIsOpen(false);
             reset();         
         } catch (error: any) {
-            toast.error(error.message || t('errorServer'));
+            toast.error(t('errorServer') || error.message);
         }
     };
 
