@@ -12,7 +12,7 @@ export function LogoutButton({ label }: LogoutButtonProps) {
   return (
     <Button 
       variant={'outline'} 
-      onClick={() => signOut({ callbackUrl: '/pt/login?logout=success' })}
+      onClick={() => signOut({ callbackUrl: '/login?logout=success' })}
       className='flex items-center cursor-pointer mb-10 font-semibold shadow-md'
     >
       <CgLogOut className='size-5' />
