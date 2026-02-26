@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "react-toastify"
@@ -54,6 +54,17 @@ export function CarFormModal({ car, trigger }: CarModalProps) {
             year: car?.year ? String(car.year) : "",
         }
     });
+
+    useEffect(() => {
+        if (car) {
+            reset({
+                brand: car.brand,
+                model: car.model,
+                color: car.color,
+                year: String(car.year),
+            });
+        }
+    }, [car, reset]);
 
     const onSubmit = async (formData: CarFormData) => {
         try {

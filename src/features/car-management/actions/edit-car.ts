@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type CarFormData } from "../schemas/car";
 import { authorizedFetch } from "../lib/api";
 
@@ -13,6 +14,10 @@ export async function editCar({ id, data }: { id: string | number; data: CarForm
     if (response.status === 401) throw new Error("Sessão expirada.");
     throw new Error("Erro ao editar carro");
   }
+
+  revalidateTag(`car-${id}`, 'default'); 
+
+  revalidatePath(`/details/${id}`, 'page'); 
   
   return response.json();
 }

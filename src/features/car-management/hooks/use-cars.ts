@@ -4,6 +4,7 @@ import { createCar } from "../actions/create-car";
 import { editCar } from "../actions/edit-car";
 import { deleteCar } from "../actions/delete-car";
 import { getCarById } from "../actions/get-id-car";
+import { useRouter } from "next/navigation";
 import { type CarFormData } from "../schemas/car";
 
 export function useGetCar(id: string | number | undefined) {
@@ -16,7 +17,9 @@ export function useGetCar(id: string | number | undefined) {
 }
 
 export function useCars(filters: Record<string, any> = {}) {
+  const router = useRouter();
   const queryClient = useQueryClient();
+  
   const carsQuery = useQuery({
     queryKey: ["cars", filters], 
     queryFn: () => getAllCars(filters),
@@ -34,7 +37,9 @@ export function useCars(filters: Record<string, any> = {}) {
     mutationFn: editCar,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ["cars"] });
-      queryClient.invalidateQueries({ queryKey: ["car", variables.id] });
+      queryClient.invalidateQueries({ queryKey: ["car", String(variables.id)] });
+
+      router.refresh();
     },
   });
 
