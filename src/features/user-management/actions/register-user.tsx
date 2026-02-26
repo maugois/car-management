@@ -1,3 +1,5 @@
+"use server";
+
 import { RegisterFormData } from "../schemas/register";
 import { getTranslations } from 'next-intl/server';
 
