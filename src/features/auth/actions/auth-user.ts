@@ -1,3 +1,5 @@
+"use server"
+
 import { LoginFormData } from "../schemas/login";
 import { AuthResponse } from "../types/responses";
 import { getTranslations } from 'next-intl/server';
