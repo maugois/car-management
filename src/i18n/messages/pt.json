@@ -51,6 +51,7 @@
     "termsPrefix": "Ao se registrar, você concorda com nossos",
     "termsLink": "Termos e Condições",
     "errors": {
+      "register_error": "Erro ao registrar!",
       "unauthorized": "Sua sessão expirou. Faça login novamente.",
       "fetch_failed": "Não foi possível realizar o registro.",
       "generic": "Ocorreu um erro inesperado.",

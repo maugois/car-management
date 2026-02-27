@@ -40,13 +40,13 @@ export default function RegisterForm() {
 
     async function onSubmit(values: RegisterFormData) {
         setLoading(true);
-        
-        const result = await registerUser(values);
 
-        if (result.success) {
-          router.push('/login?registered=success');
-        } else {
-          toast.error(t('error_server'));
+        try {
+            await registerUser(values);
+            router.push('/login?registered=success');
+        } catch (error) {
+            toast.error(t('Errors.register_error'));
+        } finally {
           setLoading(false);
         }
     }

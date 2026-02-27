@@ -19,8 +19,6 @@ export async function registerUser(data: RegisterFormData) {
       }),
     });
 
-    const result = await response.json();
-
     if (!response.ok) {
       throw new Error(t("errors.fetch_failed"));
     }
