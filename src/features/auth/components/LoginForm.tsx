@@ -34,6 +34,10 @@ export default function LoginForm() {
         if (searchParams.get('logout') === 'success') {
             toast.info(t('logout_success_message'));
         }
+
+        if (searchParams.get('logout') === 'expired') {
+            toast.warning(t('session_expired_message'));
+        }
             
         if (searchParams.get('registered') === 'success') {
             toast.success(t('register_success_message'));

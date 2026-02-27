@@ -23,6 +23,7 @@
     "success_message": "User successfully registered!",
     "register_success_message": "User registered successfully!",
     "logout_success_message": "Successfully logged out. See you soon!",
+    "session_expired_message": "Your session has expired due to inactivity. Please log in again to continue.",
     "Errors": {
       "unauthorized": "Your session has expired. Please log in again.",
       "fetch_failed": "Unable to complete the login process.",

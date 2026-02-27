@@ -7,6 +7,8 @@ import { ThemeProvider } from 'next-themes';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 import TanstackProvider from "@/providers/tanstack-provider";
+import AuthProvider from "@/providers/AuthProvider";
+import { AuthWatcher } from "@/components/AuthWatcher";
 import "./globals.css";
 
 type Props = {
@@ -39,13 +41,17 @@ export default async function RootLayout({ children, params, }: Readonly<{ child
       <body className={`antialiased`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider locale={locale}>
-            <TanstackProvider>
-              <header className="flex gap-2 items-center absolute top-8 right-8">
-                <ThemeSwitcher />
-                <LanguageSwitcher />
-              </header>
-              {children}
-            </TanstackProvider>
+            <AuthProvider>
+              <TanstackProvider>
+                <AuthWatcher />
+                
+                <header className="flex gap-2 items-center absolute top-8 right-8">
+                  <ThemeSwitcher />
+                  <LanguageSwitcher />
+                </header>
+                {children}
+              </TanstackProvider>
+            </AuthProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

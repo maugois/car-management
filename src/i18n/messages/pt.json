@@ -23,6 +23,7 @@
     "success_message": "Usuário registrado com sucesso!",
     "register_success_message": "Usuário registrado com sucesso!",
     "logout_success_message": "Sessão encerrada com sucesso. Até logo!",
+    "session_expired_message": "Sua sessão expirou por inatividade. Por favor, faça login novamente para continuar.",
     "errors": {
       "unauthorized": "Sua sessão expirou. Faça login novamente.",
       "fetch_failed": "Não foi possível realizar o login.",

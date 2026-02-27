@@ -21,6 +21,7 @@ export const authOptions: NextAuthOptions = {
               name: result.name,
               email: result.email,
               accessToken: result.token,
+              expiresIn: result.expiresIn,
             };
           }
           return null;
@@ -33,25 +34,27 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        const expirationInSeconds = (user as any).expiresIn || 1800;
+
         return {
           ...token,
           id: user.id,
-          name: user.name,
-          email: user.email,
           accessToken: user.accessToken,
+          expiresAt: Date.now() + expirationInSeconds * 1000,
         };
+      }
+
+      if (Date.now() > (token.expiresAt as number)) {
+          return { ...token, error: "TokenExpiredError" };
       }
 
       return token;
     },
     async session({ session, token }) {
       if (token) {
-        session.user = {
-          id: token.id ?? "",
-          name: token.name ?? "",
-          email: token.email ?? "",
-          accessToken: token.accessToken ?? "",
-        };
+        session.user.id = token.id as string;
+        session.user.accessToken = token.accessToken as string; 
+        session.error = token.error as "TokenExpiredError";
       }
       return session;
     },
@@ -61,6 +64,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
+    maxAge: 60,
   },
 };
 

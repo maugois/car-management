@@ -31,7 +31,7 @@ export default withAuth(
 
         if (isPublicPage) return true;
         
-        return !!token;
+        return !!token && token.error !== "TokenExpiredError";
       }
     },
     pages: {  
