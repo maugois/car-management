@@ -8,7 +8,7 @@ export async function authorizedFetch(endpoint: string, options: RequestInit = {
     const t = await getTranslations('login');
     const session = await getServerSession(authOptions);
     const token = session?.user?.accessToken;
-    const baseUrl = "http://localhost:8080/api/v1";
+    const baseUrl = `${process.env.API_URL}/api/v1`;
 
     if (!token) {
         throw new Error(t("errors.unauthorized"));
