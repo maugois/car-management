@@ -10,12 +10,13 @@ import { MdSpaceDashboard } from "react-icons/md";
 import PaginationDataTable from '@/features/car-management/components/PaginationDataTable';
 import { CarFormModal } from "@/components/CarFormModal";
 import { LogoutButton } from "@/features/auth/components/LogoutButton";
+import { CarQueryParams } from "@/features/car-management/types/car-params"
 
 export default function DashboardPage() {
     const t = useTranslations('Dashboard');
 
     const [totalElements, setTotalElements] = useState(0);
-    const [queryParams, setQueryParams] = useState({
+    const [queryParams, setQueryParams] = useState<Required<CarQueryParams>>({
         page: 0,
         size: 10,
         brand: "",
@@ -23,7 +24,7 @@ export default function DashboardPage() {
         year: ""
     });
 
-    const handleFilter = (filters: any) => {
+    const handleFilter = (filters: Partial<CarQueryParams>) => {
         setQueryParams(prev => ({ ...prev, ...filters, page: 0 }));
     };
 

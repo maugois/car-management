@@ -24,7 +24,9 @@ export async function registerUser(data: RegisterFormData) {
     }
 
     return { success: true };
-  } catch (error: any) {
-    return { success: false, error: t("errors.fetch_failed") };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : t('errors.generic');
+
+    return { success: false, error: message };
   }
 }

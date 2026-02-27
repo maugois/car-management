@@ -22,10 +22,7 @@ import { Label } from "@/components/ui/label"
 import { useTranslations } from "next-intl";
 import { useCarFormSchema, type CarFormData } from "@/features/car-management/schemas/car"
 import { useCars } from "@/features/car-management/hooks/use-cars"
-
-interface Car extends CarFormData {
-  id?: string;
-}
+import { Car } from "@/features/car-management/types/car";
 
 interface CarModalProps {
   car?: Car;

@@ -15,10 +15,11 @@ import { DeleteCarModal } from "./DeleteCarModal";
 import { useTranslations } from "next-intl";
 import { useCars } from "@/features/car-management/hooks/use-cars";
 import { toast } from "react-toastify";
+import { Car } from "../types/car";
 
 interface RowActionsProps {
   id: string | number;
-  carData?: any;
+  carData?: Car;
 }
 
 export default function RowActions({

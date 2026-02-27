@@ -5,6 +5,7 @@ import { editCar } from "../actions/edit-car";
 import { deleteCar } from "../actions/delete-car";
 import { getCarById } from "../actions/get-id-car";
 import { useRouter } from "next/navigation";
+import { CarQueryParams } from "../types/car-params";
 import { type CarFormData } from "../schemas/car";
 
 export function useGetCar(id: string | number | undefined) {
@@ -16,7 +17,7 @@ export function useGetCar(id: string | number | undefined) {
   });
 }
 
-export function useCars(filters: Record<string, any> = {}) {
+export function useCars(filters: CarQueryParams = { page: 0, size: 10 }) {
   const router = useRouter();
   const queryClient = useQueryClient();
   

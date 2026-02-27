@@ -2,8 +2,10 @@
 
 import { authorizedFetch } from "../lib/api";
 import { getTranslations } from 'next-intl/server';
+import { CarQueryParams } from "../types/car-params";
+import { PaginatedResponse, Car } from "@/types/api";
 
-export async function getAllCars(filters: Record<string, any> = {}) {
+export async function getAllCars(filters: CarQueryParams) : Promise<PaginatedResponse<Car> | { error: string }> {
   const t = await getTranslations('Dashboard');
   const params = new URLSearchParams();
   Object.entries(filters).forEach(([key, value]) => {
@@ -28,6 +30,6 @@ export async function getAllCars(filters: Record<string, any> = {}) {
       return { error: t("errors.fetch_failed") };
   }
 
-  const data = await response.json();
+  const data: PaginatedResponse<Car> = await response.json();
   return data;
 }
